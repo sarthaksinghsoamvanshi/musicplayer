@@ -2,26 +2,42 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:musicplayer/artist.dart';
 
 void main() {
   runApp(HomePage());
 }
 
 class HomePage extends StatelessWidget {
-  Widget appbar()
-  {
+  Widget appbar() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconButton(icon: Icon(Icons.menu,color: Colors.white,), onPressed: null),
-        Text("Music Player",style: TextStyle(color:Colors.white,fontSize:25),),
-        IconButton(icon: Icon(Icons.search,color:Colors.white), onPressed: null)
+        InkWell(
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
+            onTap: null),
+        Spacer(),
+        Text(
+          "Music Player",
+          style: TextStyle(color: Colors.white, fontSize: 25),
+        ),
+        Spacer(),
+        InkWell(
+            child: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            onTap: null),
       ],
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Stack(
           children: [
@@ -43,7 +59,43 @@ class HomePage extends StatelessWidget {
             ),
             ListView(
               children: [
-                appbar(),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: appbar(),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(" Albums",style:TextStyle(color:Colors.white,fontSize:25),),
+                          SizedBox(width:10),
+                          CircleAvatar(radius:7,backgroundColor: Colors.white,)
+                        ],
+                      ),
+                      InkWell(child:Icon(Icons.keyboard_arrow_right,color: Colors.white,))
+                    ],
+                  ),
+                ),
+                Artists(),
+                 Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(" Playlists",style:TextStyle(color:Colors.white,fontSize:25),),
+                          SizedBox(width:10),
+                          CircleAvatar(radius:7,backgroundColor: Colors.white,)
+                        ],
+                      ),
+                      InkWell(child:Icon(Icons.keyboard_arrow_right,color: Colors.white,))
+                    ],
+                  ),
+                )
               ],
             )
           ],
